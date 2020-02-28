@@ -3,7 +3,26 @@
 
 import mongoose from "mongoose";
 
-const noteSchema = new mongoose.Schema({});
+const noteSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    blogBody: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    dateCreated: {
+      type: Date,
+      required: true
+    }
+    // this is how you set up relationships in mongo using mongoose
+  },
+  { timestamps: true }
+);
 
 // relationships
 noteSchema.index();
