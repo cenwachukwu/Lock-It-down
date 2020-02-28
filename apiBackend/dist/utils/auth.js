@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.newToken = void 0;
+exports.verifyToken = exports.newToken = void 0;
 
 var _config = _interopRequireDefault(require("../config"));
 
@@ -31,9 +31,20 @@ const newToken = user => {
 // verifyToken function does the opposite of newToken. So given a token, it will verify that the token was created with the same secret from the same server
 // an it will return a payload and in this case it would be a user
 // token goes in user comes out
-// signup
+
+
+exports.newToken = newToken;
+
+const verifyToken = token => new Promise((resolve, reject) => {
+  _jsonwebtoken.default.verify(token, _config.default.secrets.jwt, (err, payload) => {
+    if (err) return reject(err);
+    resolve(payload);
+  });
+}); // signup
+// here we are implementing the signup logic using a controller:
+// accepts an email and password
 // signin
 // protect middleware
 
 
-exports.newToken = newToken;
+exports.verifyToken = verifyToken;

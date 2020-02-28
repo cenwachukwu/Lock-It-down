@@ -20,7 +20,17 @@ export const newToken = user => {
 // verifyToken function does the opposite of newToken. So given a token, it will verify that the token was created with the same secret from the same server
 // an it will return a payload and in this case it would be a user
 // token goes in user comes out
+export const verifyToken = token =>
+  new Promise((resolve, reject) => {
+    jwt.verify(token, config.secrets.jwt, (err, payload) => {
+      if (err) return reject(err);
+      resolve(payload);
+    });
+  });
 
 // signup
+// here we are implementing the signup logic using a controller:
+// accepts an email and password
+
 // signin
 // protect middleware
