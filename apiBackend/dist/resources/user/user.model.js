@@ -19,6 +19,7 @@ const userSchema = new _mongoose.default.Schema({
     unique: true,
     trim: true
   },
+  // maybe profile picture??
   password: {
     type: String,
     required: true
