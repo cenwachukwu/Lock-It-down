@@ -8,3 +8,9 @@
 
 // import model
 // import generic controllers from utils/crud
+
+import { crudControllers } from "../../utils/crud";
+
+import { Notes } from "./notes.model";
+
+export default crudControllers(Notes);

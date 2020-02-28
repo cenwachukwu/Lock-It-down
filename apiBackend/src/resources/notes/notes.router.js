@@ -2,6 +2,7 @@
 // we are basically routing our requests with express.js
 
 import { Router } from "express";
+import { controllers } from "./notes.controllers";
 
 // we would also import our controllers too
 
@@ -12,14 +13,14 @@ const router = Router();
 // /api/notes
 router
   .route("/")
-  .get()
-  .post();
+  .get(controllers.getMany)
+  .post(controllers.createOne);
 
 // /api/notes/:id
 router
   .route("/:id")
-  .get()
-  .put()
-  .delete();
+  .get(controllers.getOne)
+  .put(controllers.updateOne)
+  .delete(controllers.removeOne);
 
 export default router;
