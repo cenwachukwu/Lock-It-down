@@ -33,6 +33,9 @@ export const verifyToken = token =>
 // accepts an email and password
 export const signup = async (req, res) => {
   // if no email and password we want to return a 400 error and say "needs email and password"
+  if (!req.body.email || !req.body.password) {
+    return res.status(400).send({ message: "needs email and password" });
+  }
   // try/catch because:
   // if we have the email and password we want to try to create a new user and token and returns the token with .send()
   // we also want to be able to catch any errors and end the req without sending a message with .end()
