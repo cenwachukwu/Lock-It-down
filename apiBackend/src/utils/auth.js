@@ -38,7 +38,12 @@ export const signup = async (req, res) => {
   }
   // try/catch because:
   // if we have the email and password we want to try to create a new user and token and returns the token with .send()
-  // we also want to be able to catch any errors and end the req without sending a message with .end()
+  try {
+    const user = await User.create(req.body);
+    const token = newToken(user);
+    return res.status(201).send({ token });
+    // we also want to be able to catch any errors and end the req without sending a message with .end()
+  } catch (e) {}
 };
 
 // signin
