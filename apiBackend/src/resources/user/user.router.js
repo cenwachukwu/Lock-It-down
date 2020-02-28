@@ -17,7 +17,7 @@ router.get("/", person);
 router.put("/", updatePerson);
 
 //Users can now delete themselves
-router.put("/", deletePerson);
+router.delete("/", deletePerson);
 
 export default router;
 
