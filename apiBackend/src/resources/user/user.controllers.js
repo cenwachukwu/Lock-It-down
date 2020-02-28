@@ -29,13 +29,32 @@ export const person = async (req, res) => {
 // updating an autheticated user by an autheticated user
 export const updatePerson = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.user._id, req.body, {
-      new: true
-    })
+    const user = await User.findByIdAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      {
+        new: true
+      }
+    )
       .lean()
       .exec();
 
     res.status(200).json({ data: user });
+  } catch (e) {
+    console.error(e);
+    res.status(400).end();
+  }
+};
+
+export const deletePerson = async (req, res) => {
+  try {
+    const removed = await User.findByIdAndDelete({ _id: req.params.id });
+
+    if (!removed) {
+      return res.status(400).end();
+    }
+
+    return res.status(200).json({ data: removed });
   } catch (e) {
     console.error(e);
     res.status(400).end();

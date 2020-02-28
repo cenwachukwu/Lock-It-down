@@ -2,7 +2,7 @@
 // we are basically routing our requests with express.js
 
 import { Router } from "express";
-import { person, updatePerson, users } from "./user.controllers";
+import { person, updatePerson, deletePerson } from "./user.controllers";
 
 // we would also import our controllers too
 
@@ -15,6 +15,9 @@ router.get("/", person);
 
 // we also want update our autheticated user by our autheticated user
 router.put("/", updatePerson);
+
+//Users can now delete themselves
+router.put("/", deletePerson);
 
 export default router;
 

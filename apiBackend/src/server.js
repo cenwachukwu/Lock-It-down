@@ -21,6 +21,7 @@ app.post("/signup", signup);
 app.post("/signin", signin);
 // how do we get all of our users:
 // the protect middleware was stoping us from accessing all the users without auth
+// will take out later because user info will be made public
 app.get("/users", users);
 
 app.use("/api", protect);
