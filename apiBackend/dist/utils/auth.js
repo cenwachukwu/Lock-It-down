@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.signup = exports.verifyToken = exports.newToken = void 0;
+exports.signin = exports.signup = exports.verifyToken = exports.newToken = void 0;
 
 var _config = _interopRequireDefault(require("../config"));
 
@@ -63,9 +63,37 @@ const signup = async (req, res) => {
     return res.status(201).send({
       token
     }); // we also want to be able to catch any errors and end the req without sending a message with .end()
-  } catch (e) {}
+  } catch (e) {
+    console.error(e);
+    return res.status(500).end();
+  }
 }; // signin
-// protect middleware
+// signin logic using controllers:
+// users must be real and not invalid and passwords must match
 
 
 exports.signup = signup;
+
+const signin = async (req, res) => {
+  // if no email and password we want to return a 400 error and say "needs email and password"
+  if (!req.body.email || !req.body.password) {
+    return res.status(400).send({
+      message: "need email and password"
+    });
+  } // catch any invalid emails and password combo i.e. not user
+  // try/catch
+  // if we have the email and password we want to try to find the user and token and returns the token with .send()
+
+
+  try {// if wrong email and password (not user) we return a 401 status and send a message using the invalid label we created
+    // check if the password is the same as the one in the db using the checkPassword() in the user.model
+    // if wrong password (not user) we return a 401 status and send a message using the invalid label we created
+    // return the user token
+  } catch (e) {
+    console.error(e);
+    res.status(500).end();
+  }
+}; // protect middleware
+
+
+exports.signin = signin;
