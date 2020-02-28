@@ -3,6 +3,21 @@
 
 import { Router } from "express";
 
+// route is a path and an HTTP method
+
 const router = Router();
+
+// /api/notes
+router
+  .route("/")
+  .get()
+  .post();
+
+// /api/notes/:id
+router
+  .route("/:id")
+  .get()
+  .put()
+  .delete();
 
 export default router;
