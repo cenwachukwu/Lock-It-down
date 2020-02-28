@@ -5,3 +5,5 @@
 // controllers implements the logic that interacts with our database models
 
 // instead of writing a controller for everysingle crud function, we can have generalized controlers
+
+// import user model

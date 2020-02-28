@@ -3,6 +3,8 @@
 
 import { Router } from "express";
 
+// we would also import our controllers too
+
 // route is a path and an HTTP method
 
 const router = Router();
