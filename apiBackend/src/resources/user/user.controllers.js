@@ -6,4 +6,8 @@
 
 // instead of writing a controller for everysingle crud function, we can have generalized controlers
 
-// import user model
+import { User } from "./user.model";
+
+export const person = async (req, res) => {
+  res.status(200).json({ data: req.user });
+};
