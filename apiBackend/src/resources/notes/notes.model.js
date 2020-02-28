@@ -31,6 +31,6 @@ const noteSchema = new mongoose.Schema(
 );
 
 // relationships
-noteSchema.index();
+noteSchema.index({ user: 1, title: 1 }, { unique: true });
 
 export const Notes = mongoose.model("notes", noteSchema);
