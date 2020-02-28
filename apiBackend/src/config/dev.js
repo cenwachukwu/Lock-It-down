@@ -2,5 +2,6 @@ export const config = {
   secrets: {
     jwt: "learneverything"
   },
-  dbUrl: "mongodb://localhost:27017/lockItDown"
+  dbUrl:
+    "mongodb+srv://cenwachukwu:Chidera97_@cluster0-xadjq.mongodb.net/test?retryWrites=true&w=majority"
 };
