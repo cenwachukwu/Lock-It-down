@@ -7,6 +7,7 @@ import { connect } from "./utils/db";
 import userRouter from "./resources/user/user.router";
 import { signup, signin, protect } from "./utils/auth";
 import { users } from "./resources/user/user.controllers";
+import { noteRouter } from "./resources/notes/notes.router";
 
 export const app = express();
 
@@ -26,6 +27,7 @@ app.get("/users", users);
 
 app.use("/api", protect);
 app.use("/api/user", userRouter);
+app.use("/api/notes", noteRouter);
 
 export const start = async () => {
   try {

@@ -10,14 +10,17 @@ import { person, updatePerson, deletePerson } from "./user.controllers";
 
 const router = Router();
 
+// /api/notes
 // we will get one autheticated user per time
 router.get("/", person);
 
-// we also want update our autheticated user by our autheticated user
-router.put("/:id", updatePerson);
-
-//Users can now delete themselves
-router.delete("/:id", deletePerson);
+// /api/user/:id
+router
+  .route("/:id")
+  // we also want update our autheticated user by our autheticated user
+  .put(updatePerson)
+  //Users can now delete themselves
+  .delete(deletePerson);
 
 export default router;
 

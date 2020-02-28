@@ -13,13 +13,14 @@ var _user = require("./user.controllers");
 // we are basically routing our requests with express.js
 // we would also import our controllers too
 // route is a path and an HTTP method
-const router = (0, _express.Router)(); // we will get one autheticated user per time
+const router = (0, _express.Router)(); // /api/notes
+// we will get one autheticated user per time
 
-router.get("/", _user.person); // we also want update our autheticated user by our autheticated user
+router.get("/", _user.person); // /api/user/:id
 
-router.put("/:id", _user.updatePerson); //Users can now delete themselves
-
-router.delete("/:id", _user.deletePerson);
+router.route("/:id") // we also want update our autheticated user by our autheticated user
+.put(_user.updatePerson) //Users can now delete themselves
+.delete(_user.deletePerson);
 var _default = router; // because we are doing authentication, we will post()/create when we authenticate ie. signin/signup
 
 exports.default = _default;
