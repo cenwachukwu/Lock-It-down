@@ -56,16 +56,11 @@ exports.updatePerson = updatePerson;
 
 const deletePerson = async (req, res) => {
   try {
-    const removed = await _user.User.findByIdAndDelete({
+    await _user.User.findByIdAndDelete({
       _id: req.params.id
     });
-
-    if (!removed) {
-      return res.status(400).end();
-    }
-
     return res.status(200).json({
-      data: removed
+      data: "Your User profile has been deleted"
     });
   } catch (e) {
     console.error(e);

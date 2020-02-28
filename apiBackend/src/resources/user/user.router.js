@@ -14,10 +14,10 @@ const router = Router();
 router.get("/", person);
 
 // we also want update our autheticated user by our autheticated user
-router.put("/", updatePerson);
+router.put("/:id", updatePerson);
 
 //Users can now delete themselves
-router.delete("/", deletePerson);
+router.delete("/:id", deletePerson);
 
 export default router;
 

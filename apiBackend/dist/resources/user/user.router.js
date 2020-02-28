@@ -17,9 +17,9 @@ const router = (0, _express.Router)(); // we will get one autheticated user per 
 
 router.get("/", _user.person); // we also want update our autheticated user by our autheticated user
 
-router.put("/", _user.updatePerson); //Users can now delete themselves
+router.put("/:id", _user.updatePerson); //Users can now delete themselves
 
-router.delete("/", _user.deletePerson);
+router.delete("/:id", _user.deletePerson);
 var _default = router; // because we are doing authentication, we will post()/create when we authenticate ie. signin/signup
 
 exports.default = _default;
