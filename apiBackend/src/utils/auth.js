@@ -31,6 +31,12 @@ export const verifyToken = token =>
 // signup
 // here we are implementing the signup logic using a controller:
 // accepts an email and password
+export const signup = async (req, res) => {
+  // if no email and password we want to return a 400 error and say "needs email and password"
+  // try/catch because:
+  // if we have the email and password we want to try to create a new user and token and returns the token with .send()
+  // we also want to be able to catch any errors and end the req without sending a message with .end()
+};
 
 // signin
 // protect middleware
