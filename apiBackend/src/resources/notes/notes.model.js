@@ -2,3 +2,8 @@
 // we will need to set up a relationship with the user
 
 import mongoose from "mongoose";
+
+// relationships
+noteSchema.index();
+
+export const Notes = mongoose.model("notes", noteSchema);
