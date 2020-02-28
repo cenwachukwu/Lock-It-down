@@ -2,6 +2,7 @@
 // we are basically routing our requests with express.js
 
 import { Router } from "express";
+import { person, updatePerson, users } from "./user.controllers";
 
 // we would also import our controllers too
 
@@ -10,12 +11,13 @@ import { Router } from "express";
 const router = Router();
 
 // we will get one autheticated user per time
-router.get("/");
+router.get("/", person);
 
 // how do we get all of our users
+router.get("/users", users);
 
 // we also want update our autheticated user by our autheticated user
-router.put("/");
+router.put("/", updatePerson);
 
 export default router;
 
