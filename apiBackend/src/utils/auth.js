@@ -88,3 +88,34 @@ export const signin = async (req, res) => {
 };
 
 // protect middleware
+// figure out how to make this stop preventing the getmany without auth
+// protect middleware logic with controllers:
+export const protect = async (req, res, next) => {
+  const bearer = req.headers.authorization;
+
+  if (!bearer || !bearer.startsWith("Bearer ")) {
+    return res.status(401).end();
+  }
+  // The trim() method removes whitespace from both sides of a string
+  const token = bearer.split("Bearer ")[1].trim();
+  let payload;
+  try {
+    payload = await verifyToken(token);
+  } catch (e) {
+    console.error(e);
+    return res.status(401).end();
+  }
+  // The lean makes it return a json
+  // we dont want the password so we use select() to remove it
+  const user = await User.findById(payload.id)
+    .select("-password")
+    .lean()
+    .exec();
+
+  if (!user) {
+    return res.status(401).end();
+  }
+
+  req.user = user;
+  next();
+};
