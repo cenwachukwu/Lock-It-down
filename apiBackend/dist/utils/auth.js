@@ -81,14 +81,35 @@ const signin = async (req, res) => {
       message: "need email and password"
     });
   } // catch any invalid emails and password combo i.e. not user
-  // try/catch
+
+
+  const invalid = {
+    message: "Invalid email and password combination"
+  }; // try/catch
   // if we have the email and password we want to try to find the user and token and returns the token with .send()
 
+  try {
+    // exec() method executes a search for a match in a specified string. Returns a result array, or null
+    const user = await _user.User.findOne({
+      email: req.body.email
+    }).select("email password").exec(); // if wrong email and password (not user) we return a 401 status and send a message using the invalid label we created
 
-  try {// if wrong email and password (not user) we return a 401 status and send a message using the invalid label we created
-    // check if the password is the same as the one in the db using the checkPassword() in the user.model
-    // if wrong password (not user) we return a 401 status and send a message using the invalid label we created
-    // return the user token
+    if (!user) {
+      return res.status(401).send(invalid);
+    } // check if the password is the same as the one in the db using the checkPassword() in the user.model
+
+
+    const match = await user.checkPassword(req.body.password); // if wrong password (not user) we return a 401 status and send a message using the invalid label we created
+
+    if (!match) {
+      return res.status(401).send(invalid);
+    } // return the user token
+
+
+    const token = newToken(user);
+    return res.status(201).send({
+      token
+    }); // catch and console.log the error and end the req
   } catch (e) {
     console.error(e);
     res.status(500).end();
