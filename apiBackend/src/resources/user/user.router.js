@@ -13,9 +13,6 @@ const router = Router();
 // we will get one autheticated user per time
 router.get("/", person);
 
-// how do we get all of our users
-router.get("/users", users);
-
 // we also want update our autheticated user by our autheticated user
 router.put("/", updatePerson);
 

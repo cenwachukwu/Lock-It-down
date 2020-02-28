@@ -19,6 +19,10 @@ var _db = require("./utils/db");
 
 var _user = _interopRequireDefault(require("./resources/user/user.router"));
 
+var _auth = require("./utils/auth");
+
+var _user2 = require("./resources/user/user.controllers");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const app = (0, _express.default)();
@@ -30,6 +34,12 @@ app.use((0, _bodyParser.urlencoded)({
   extended: true
 }));
 app.use((0, _morgan.default)("dev"));
+app.post("/signup", _auth.signup);
+app.post("/signin", _auth.signin); // how do we get all of our users:
+// the protect middleware was stoping us from accessing all the users without auth
+
+app.get("/users", _user2.users);
+app.use("/api", _auth.protect);
 app.use("/api/user", _user.default);
 
 const start = async () => {

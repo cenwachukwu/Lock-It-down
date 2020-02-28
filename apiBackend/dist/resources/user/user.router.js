@@ -15,9 +15,7 @@ var _user = require("./user.controllers");
 // route is a path and an HTTP method
 const router = (0, _express.Router)(); // we will get one autheticated user per time
 
-router.get("/", _user.person); // how do we get all of our users
-
-router.get("/users", _user.users); // we also want update our autheticated user by our autheticated user
+router.get("/", _user.person); // we also want update our autheticated user by our autheticated user
 
 router.put("/", _user.updatePerson);
 var _default = router; // because we are doing authentication, we will post()/create when we authenticate ie. signin/signup
