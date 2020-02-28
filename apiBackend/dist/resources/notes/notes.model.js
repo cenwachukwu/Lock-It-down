@@ -17,7 +17,7 @@ const noteSchema = new _mongoose.default.Schema({
     required: true,
     trim: true
   },
-  blogBody: {
+  noteBody: {
     type: String,
     required: true,
     trim: true

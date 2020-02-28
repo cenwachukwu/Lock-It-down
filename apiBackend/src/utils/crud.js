@@ -74,16 +74,12 @@ export const updateOne = model => async (req, res) => {
 // allowing authenticated user to remove notes
 export const removeOne = model => async (req, res) => {
   try {
-    const removed = await model.findOneAndRemove({
+    await model.findOneAndRemove({
       createdBy: req.user._id,
       _id: req.params.id
     });
 
-    if (!removed) {
-      return res.status(400).end();
-    }
-
-    return res.status(200).json({ data: removed });
+    return res.status(200).json({ data: "Your note has been deleted" });
   } catch (e) {
     console.error(e);
     res.status(400).end();

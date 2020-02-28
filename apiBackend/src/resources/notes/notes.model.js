@@ -10,7 +10,7 @@ const noteSchema = new mongoose.Schema(
       required: true,
       trim: true
     },
-    blogBody: {
+    noteBody: {
       type: String,
       required: true,
       trim: true

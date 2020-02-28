@@ -2,7 +2,7 @@
 // we are basically routing our requests with express.js
 
 import { Router } from "express";
-import { controllers } from "./notes.controllers";
+import controllers from "./notes.controllers";
 
 // we would also import our controllers too
 

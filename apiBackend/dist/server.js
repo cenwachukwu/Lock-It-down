@@ -23,7 +23,7 @@ var _auth = require("./utils/auth");
 
 var _user2 = require("./resources/user/user.controllers");
 
-var _notes = require("./resources/notes/notes.router");
+var _notes = _interopRequireDefault(require("./resources/notes/notes.router"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44,7 +44,7 @@ app.post("/signin", _auth.signin); // how do we get all of our users:
 app.get("/users", _user2.users);
 app.use("/api", _auth.protect);
 app.use("/api/user", _user.default);
-app.use("/api/notes", _notes.noteRouter);
+app.use("/api/notes", _notes.default);
 
 const start = async () => {
   try {
