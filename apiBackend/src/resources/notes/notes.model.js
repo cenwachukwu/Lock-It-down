@@ -18,8 +18,14 @@ const noteSchema = new mongoose.Schema(
     dateCreated: {
       type: Date,
       required: true
-    }
+    },
     // this is how you set up relationships in mongo using mongoose
+    createdBy: {
+      type: mongoose.SchemaTypes.ObjectId,
+      // so that mongo knows what model to look for this id
+      ref: "user",
+      required: true
+    }
   },
   { timestamps: true }
 );
