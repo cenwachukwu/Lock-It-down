@@ -46,9 +46,22 @@ const userSchema = new mongoose.Schema(
 );
 
 // hash password with bcrypt
-userSchema.pre("save", function(next) {});
+userSchema.pre("save", function(next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
 
-// compare password with bcrypt
+  bcrypt.hash(this.password, 8, (err, hash) => {
+    if (err) {
+      return next(err);
+    }
+
+    this.password = hash;
+    next();
+  });
+});
+
+// compare password with bcrypt and we would use this in the signin authe
 userSchema.methods.checkPassword = function(password) {};
 
 export const User = mongoose.model("user", userSchema);
