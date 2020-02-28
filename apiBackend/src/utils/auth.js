@@ -17,6 +17,10 @@ export const newToken = user => {
 };
 
 // verifying tokens
+// verifyToken function does the opposite of newToken. So given a token, it will verify that the token was created with the same secret from the same server
+// an it will return a payload and in this case it would be a user
+// token goes in user comes out
+
 // signup
 // signin
 // protect middleware
