@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.app = void 0;
+exports.start = exports.app = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
@@ -29,30 +29,32 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const app = (0, _express.default)();
 exports.app = app;
-app.disable("x-powered-by");
+app.disable('x-powered-by');
 app.use((0, _cors.default)());
 app.use((0, _bodyParser.json)());
 app.use((0, _bodyParser.urlencoded)({
   extended: true
 }));
-app.use((0, _morgan.default)("dev"));
-app.post("/signup", _auth.signup);
-app.post("/signin", _auth.signin); // how do we get all of our users:
+app.use((0, _morgan.default)('dev'));
+app.post('/signup', _auth.signup);
+app.post('/signin', _auth.signin); // how do we get all of our users:
 // the protect middleware was stoping us from accessing all the users without auth
 // will take out later because user info will be made public
 
-app.get("/users", _user2.users);
-app.use("/api", _auth.protect);
-app.use("/api/user", _user.default);
-app.use("/api/notes", _notes.default);
+app.get('/users', _user2.users);
+app.use('/api', _auth.protect);
+app.use('/api/user', _user.default);
+app.use('/api/notes', _notes.default);
 
-async () => {
+const start = async () => {
   try {
     await (0, _db.connect)();
     app.listen(_config.default.port, () => {
-      console.log(`REST API on :${_config.default.port}`);
+      console.log(`REST API on http://localhost:${_config.default.port}/api`);
     });
   } catch (e) {
     console.error(e);
   }
 };
+
+exports.start = start;
