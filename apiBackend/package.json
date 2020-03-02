@@ -9,7 +9,7 @@
     "format": "prettier \"src/**/*.{js}\" --write",
     "restart": "rimraf dist && npm run build && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/index.js"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
