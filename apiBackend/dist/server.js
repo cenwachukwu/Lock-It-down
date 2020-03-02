@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.start = exports.app = void 0;
+exports.app = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
@@ -46,7 +46,7 @@ app.use("/api", _auth.protect);
 app.use("/api/user", _user.default);
 app.use("/api/notes", _notes.default);
 
-const start = async () => {
+async () => {
   try {
     await (0, _db.connect)();
     app.listen(_config.default.port, () => {
@@ -56,5 +56,3 @@ const start = async () => {
     console.error(e);
   }
 };
-
-exports.start = start;
